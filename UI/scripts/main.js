@@ -109,30 +109,3 @@ function signUp() {
     })
 }
     
-<div class="modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h1 id="message">Hello, I am a modal!</h1>
-    </div>        
-</div>
-
-function userAlert(message){
-
-var modal = document.querySelector(".modal");
-    var trigger = document.querySelector(".trigger");
-    var closeButton = document.querySelector(".close-button");
-
-    function toggleModal() {
-        modal.classList.toggle("show-modal");
-    }
-
-    function windowOnClick(event) {
-        if (event.target === modal) {
-            toggleModal();
-        }
-    }
-
-    trigger.addEventListener("click", toggleModal);
-    closeButton.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);        
-}
