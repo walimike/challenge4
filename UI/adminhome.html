@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Michael Robert Wali">
+    <title>sendit</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="scripts/admindash.js"></script>
+  </head>
+  <body class="innerbody" onload="getAllOrders();">
+    <header>
+      <nav>
+        <div class="nav-link">
+          <a onclick="Logout();">Logout</a>
+          <a href="adminprofile.html">Profile</a>
+          <a href="adminhome.html">Home</a>
+      </div>
+      </nav>
+    </header>
+    <div class="view-parcel">
+      <h1>Details</h1>
+      <div class="table1">
+        <table>
+          <tr>
+            <th>Parcel Name:</th>
+            <td id="parcelname"></td>
+          </tr>
+          <tr>
+            <th>Price</th>
+            <td id="price"></td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td id="status"></td>
+            <td id="statusbutton"></td>
+          </tr>
+          <tr>
+            <th>Source</th>
+            <td id="source"></td>
+          </tr>
+          <tr>
+            <th>Present Location</th>
+            <td id="presentlocation"></td>
+            <td id="locationbutton"></td>
+          </tr>
+          <tr>
+            <th>Destination</th>
+            <td id="destination"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="all-parcels">
+      <h1>All Parcels</h1>
+      <div class="table">
+        <table id="admintable">
+          <tr>
+            <th>Parcel Name</th>
+            <th>Client's Name</th>
+            <th>View Details</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

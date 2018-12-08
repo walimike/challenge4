@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Michael Robert Wali">
+    <title>sendit</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="scripts/admindash.js"></script>
+    <script src="scripts/main.js"></script>
+  </head>
+  <body class="innerbody" onload="updateProfile('http://127.0.0.1:5000/v2/api/parcels','profiletable');">
+    <nav>
+        <a href="index.html">Logout</a>
+        <a href="adminprofile.html">Profile</a>
+        <a href="adminhome.html">Home</a>
+    </nav>
+    <div class="profile">
+      <div class="profile-pic">
+        <img src="images/profilepic.png">
+      </div>
+      <table>
+        <tr>
+          <th>Name:</th>
+          <td>Admin User</td>
+        </tr>
+        <tr>
+          <th>User ID:</th>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th>Account-type:</th>
+          <td>Admin User</td>
+        </tr>
+      </table>
+    </div>
+    <div class="parcel-orders">
+        <h1>All Parcels</h1>
+        <div class="table">
+          <table id="profiletable">
+            <tr>
+              <th>Parcel Name</th>
+              <th>Parcel ID</th>
+              <th>Destination</th>
+              <th>Source</th>
+              <th>Status</th>
+              <th>Present Location</th>
+              <th>Price</th>
+              <th>User ID</th>
+              <th>Client Name</th>
+            </tr>
+          </table>
+    </div>
+  </body>
+</html>

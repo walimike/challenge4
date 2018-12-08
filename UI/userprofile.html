@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Michael Robert Wali">
+    <title>sendit</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="scripts/main.js"></script>
+  </head>
+  <body class="innerbody" onload="updateProfile('http://127.0.0.1:5000/v2/api/users/parcels','userprofiletable');",>
+    <nav>
+        <a href="index.html">Logout</a>
+        <a href="userprofile.html">Profile</a>
+        <a href="userhome.html">Home</a>
+    </nav>
+    <div class="profile">
+      <div class="profile-pic">
+        <img src="images/profilepic.png">
+      </div>
+      <table>
+        <tr>
+          <th>Name:</th>
+          <td id="userprofilename"></td>
+        </tr>
+        <tr>
+          <th>User ID:</th>
+          <td id="userprofileid"></td>
+        </tr>
+        <tr>
+          <th>Account-type:</th>
+          <td>Normal User</td>
+        </tr>
+      </table>
+    </div>
+    <div class="parcel-orders">
+        <h1>All Parcels</h1>
+        <div class="table">
+          <table>
+            <table id="userprofiletable">
+              <tr>
+                <th>Parcel Name</th>
+                <th>Parcel ID</th>
+                <th>Destination</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Present Location</th>
+                <th>Price</th>
+              </tr>
+            </table>
+          </table>
+          <table class="table2">
+            <tr>
+              <th>Total Delivered</th>
+              <td id="totaldelivered"></td>
+            </tr>
+            <tr>
+              <th>Total In-transit</th>
+              <td id="totalintransit"></td>
+            </tr>
+          </table>
+    </div>
+  </body>
+</html>
