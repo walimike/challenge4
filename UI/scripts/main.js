@@ -67,14 +67,23 @@ function logIn() {
     .then(res => res.json())
     .then(response => {
         localStorage.setItem("accesstoken",response.access_token);
-        alert(response.message);
-        if (response.role=='user'){
-            window.location.replace('userhome.html');
-        }
+        if (response.message=='successfully logged in'){    
+            redirectUser(response.role);
+        }    
         else{
-            window.location.replace('adminhome.html');
+            alert(response.message);
+            window.location.replace('signup.html');
         }
     })
+}
+
+function redirectUser(role){
+    if (role=='user'){
+        window.location.replace('userhome.html');
+    }
+    else{
+        window.location.replace('adminhome.html');
+    }    
 }
 
 function signUp() {
@@ -103,7 +112,7 @@ function signUp() {
     .then(res => res.json())
     .then(response => {
         alert(response.message);
-        if (response.message=="you have successfully signed up as " + username){
+        if (response.message=="you have successfully signed up as" + username){
         window.location.replace('index.html');
         }
     })
