@@ -53,7 +53,7 @@ function logIn() {
     let password = document.getElementById('password').value;
     
     const url = 'https://challenge4.herokuapp.com/v2/api/auth/login';
-
+   
     let data = {
         name: username,
         password: password
@@ -72,7 +72,12 @@ function logIn() {
         }    
         else{
             alert(response.message);
-            window.location.replace('signup.html');
+            if (response.message=='user does not exist, do you want to signup'){
+                window.location.replace('signup.html');
+            }
+            else{
+                window.location.reload()
+            }
         }
     })
 }
