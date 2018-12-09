@@ -27,8 +27,9 @@ function makeOrder() {
     .then(res => res.json())
     .then(response => {
         alert(response.message);
-      if (response.message=='order added successfully'){
-        addRow('parceltable',parcelname,source,destination,price,100)
+        currentParcel = response.parcel.parcelid;
+        if (response.message=='order added successfully'){
+            addRow('parceltable',parcelname,source,destination,price,currentParcel)
       }  
     })
 }
@@ -107,20 +108,6 @@ function fetchAll(){
     })  
     
 }  
-
-function addDetails(parcelname,source,destination,price,parcel_id){
-    let tableRef = document.getElementById('detailstable');
-    let newRow = tableRef.insertRow(-1);
-
-    let parcelname = newRow.insertCell(0);
-    let parcelsource = newRow.insertCell(1);
-  
-    let newParcel = document.createTextNode('Parcel Name');
-    let parcelSource = document.createTextNode(parcelName);
-    
-    parcelname.appendChild(newParcel);
-    parcelsource.appendChild(parcelSource);
-}
 
 function updateDestination(e,parcelid){
     statusurl = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}/destination`

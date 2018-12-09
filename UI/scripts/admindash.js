@@ -97,20 +97,26 @@ function addRow(tableID,parcelName,username,parcelid) {
   function updateStatus(e,parcelid){
     statusurl = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}/cancel`
     newstatus=e.target.value;
-    let data = {
-        status:newstatus
+    if( (newstatus=='cancel') || (newstatus=='deliver') ) { 
+        let data = {
+            status:newstatus
+        }
+        fetch(statusurl, {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                    'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+                },
+            body: JSON.stringify(data)     
+            })
+        .then(res => res.json())
+        .then(response => {
+            alert(response.message)
+            document.location.reload(true);
+        })
     }
-    fetch(statusurl, {
-        method: 'PUT',
-        mode: 'cors',
-        headers: {
-                 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
-             },
-        body: JSON.stringify(data)     
-         })
-    .then(res => res.json())
-    .then(response => {
-        alert(response.message)
-    })
-  }
-
+    else{
+        alert("status can only be cancel or deliver");
+        return;
+    }
+}
