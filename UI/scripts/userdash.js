@@ -3,7 +3,6 @@ const orderUrl = 'https://challenge4.herokuapp.com/v2/api/parcels';
 const userOrderUrl = 'https://challenge4.herokuapp.com/v2/api/users/parcels';
 
 function makeOrder() {
-    
     let parcelname = document.getElementById('parcelname').value;
     let price = document.getElementById('price').value;
     let source = document.getElementById('source').value;
