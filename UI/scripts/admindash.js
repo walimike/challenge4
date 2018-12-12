@@ -1,6 +1,7 @@
-token = localStorage.getItem("accesstoken")
-const orderUrl = 'https://challenge4.herokuapp.com/v2/api/parcels';
-const userOrderUrl = 'https://challenge4.herokuapp.com/v2/api/users/parcels';
+token = localStorage.getItem("accesstoken");
+baseurl = localStorage.getItem("baseurl");
+const orderUrl = `${baseurl}/v2/api/parcels`;
+const userOrderUrl = `${baseurl}/v2/api/users/parcels`;
 
 function getAllOrders() {
     
@@ -33,7 +34,11 @@ function addRow(tableID,parcelName,username,parcelid) {
     var button2 = document.createElement("button");
     button2.innerHTML = "Edit status";
     button2.addEventListener('click',()=>{
-        document.getElementById('status').innerHTML = `<input type="text" onblur=updateStatus(event,${parcelid}) id="editstatus" required>`
+        document.getElementById('status').innerHTML = `<select class="details" onblur=updateStatus(event,${parcelid}) id="editlocation">
+        <option value="In Transit">In transit</option>
+        <option value="Canceled">cancel</option>
+        <option value="Delivered">deliver</option>
+      </select>`
         button2.innerHTML = "Save";
         
     })
@@ -46,7 +51,7 @@ function addRow(tableID,parcelName,username,parcelid) {
     var button = document.createElement("button");
     button.innerHTML = "Details";
     button.addEventListener('click',()=>{
-        const specificOrder = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}`;
+        const specificOrder = `${baseurl}/v2/api/parcels/${parcelid}`;
         fetch(specificOrder, {
             method: 'GET',
             mode: 'cors',
@@ -63,6 +68,7 @@ function addRow(tableID,parcelName,username,parcelid) {
             document.getElementById('presentlocation').innerText= data.present_location;
             document.getElementById('destination').innerText= data.parcel_destination;
             document.getElementById('status').innerText= data.parcel_status;
+            document.getElementById('createdate').innerText= data.parcel_date;
             document.getElementById('statusbutton').appendChild(button2);
             document.getElementById('locationbutton').appendChild(button3);
          })
@@ -74,7 +80,7 @@ function addRow(tableID,parcelName,username,parcelid) {
   }
 
   function updateLocation(e,parcelid){
-    locationurl = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}/presentlocation`
+    locationurl = `${baseurl}/v2/api/parcels/${parcelid}/presentlocation`
     newlocation=e.target.value;
     alert(newlocation)
     let data = {
@@ -95,28 +101,23 @@ function addRow(tableID,parcelName,username,parcelid) {
   }
 
   function updateStatus(e,parcelid){
-    statusurl = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}/cancel`
+    statusurl = `${baseurl}/v2/api/parcels/${parcelid}/cancel`
     newstatus=e.target.value;
-    if( (newstatus=='cancel') || (newstatus=='deliver') ) { 
-        let data = {
-            status:newstatus
-        }
-        fetch(statusurl, {
-            method: 'PUT',
-            mode: 'cors',
-            headers: {
-                    'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
-                },
-            body: JSON.stringify(data)     
-            })
-        .then(res => res.json())
-        .then(response => {
-            alert(response.message)
-            document.location.reload(true);
+    alert(newstatus)
+    let data = {
+        status:newstatus
+    }
+    fetch(statusurl, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+                'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`
+            },
+        body: JSON.stringify(data)     
         })
+    .then(res => res.json())
+    .then(response => {
+        alert(response.message)
+        document.location.reload(true);
+      })
     }
-    else{
-        alert("status can only be cancel or deliver");
-        return;
-    }
-}

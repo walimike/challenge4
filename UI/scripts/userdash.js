@@ -1,6 +1,7 @@
+baseurl = localStorage.getItem("baseurl");
 token = localStorage.getItem("accesstoken")
-const orderUrl = 'https://challenge4.herokuapp.com/v2/api/parcels';
-const userOrderUrl = 'https://challenge4.herokuapp.com/v2/api/users/parcels';
+const orderUrl = `${baseurl}/v2/api/parcels`;
+const userOrderUrl = `${baseurl}/v2/api/users/parcels`;
 
 function makeOrder() {
     let parcelname = document.getElementById('parcelname').value;
@@ -51,7 +52,7 @@ function addRow(tableID,parcelName,source,destination,price,parcelID) {
     newbutton.innerHTML = "Details";
 
     newbutton.addEventListener('click',()=>{
-        fetch(`https://challenge4.herokuapp.com/v2/api/parcels/${parcelID}`, {
+        fetch(`${baseurl}/v2/api/parcels/${parcelID}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -109,7 +110,7 @@ function fetchAll(){
 }  
 
 function updateDestination(e,parcelid){
-    statusurl = `https://challenge4.herokuapp.com/v2/api/parcels/${parcelid}/destination`
+    statusurl = `${baseurl}/v2/api/parcels/${parcelid}/destination`
     newdestination=e.target.value;
     let data = {
         destination:newdestination

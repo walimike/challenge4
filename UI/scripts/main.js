@@ -1,4 +1,7 @@
+baseurl = localStorage.getItem("baseurl");
 token = localStorage.getItem("accesstoken")
+localStorage.setItem("baseurl",'http://127.0.0.1:5000');
+
 function updateProfile(url,tableID){
     fetch(url, {
         method: 'GET',
@@ -30,7 +33,7 @@ function updateProfile(url,tableID){
                 document.getElementById('userprofilename').innerText= specificParcel.username;
                 document.getElementById('userprofileid').innerText= specificParcel.usrid;    
             } 
-            statusArray.push(specificParcel.parcel_status)          
+            statusArray.push(specificParcel.parcel_status);          
        }
         intransit = statusArray.filter(function(value){
             return value === 'In Transit';
@@ -43,16 +46,16 @@ function updateProfile(url,tableID){
     })
 }
 
-function Logout() {
+function logOut() {
     localStorage.removeItem('token');
-    window.location.href = 'index.html';
-}
+    window.location.href = 'UI/index.html';
+ }
 
 function logIn() {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     
-    const url = 'https://challenge4.herokuapp.com/v2/api/auth/login';
+    const url = baseurl + '/v2/api/auth/login';
    
     let data = {
         name: username,
@@ -76,7 +79,7 @@ function logIn() {
                 window.location.replace('signup.html');
             }
             else{
-                window.location.reload()
+                window.location.reload();
             }
         }
     })
@@ -98,10 +101,11 @@ function signUp() {
     let email = document.getElementById('email').value;
     
     if (password1 != password2){
-        alert('Passwords do not match')
+        alert('Passwords do not match');
+        return;
     }
 
-    const url = 'https://challenge4.herokuapp.com/v2/api/auth/signup';
+    const url = `${baseurl}/v2/api/auth/signup`;
 
     let data = {
         name: username,

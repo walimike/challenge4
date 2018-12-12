@@ -61,7 +61,7 @@ body{
 }
 
 .form-input{
-  width: 80%;
+  width: 90%;
   height: 30px;
   border-radius: 5px;
   font: 15px/1.5 Arial, Helvetica, sans-serif;
@@ -94,6 +94,10 @@ input[type=radio]:not(old){
   float: right;
   height: 40px;
   width: 100px;
+}
+
+.button{
+  margin: 20px 28px;
 }
 
 .button1{
@@ -186,7 +190,7 @@ input[type=radio]:not(old){
 /* signup page style */
 
 .signup-button{
-  margin: 20px;
+    margin: 20px 28px;
 }
 
 .signup-input{
@@ -281,7 +285,6 @@ td, th{
 }
 
 .view-parcel{
-  height: 380px;
   width: 35%;
   float: right;
   background-color: white;
